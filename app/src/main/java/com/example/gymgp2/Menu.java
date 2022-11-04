@@ -12,6 +12,6 @@ public class Menu extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
 
-        //Hola Mundo
+
     }
 }
