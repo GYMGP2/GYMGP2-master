@@ -11,11 +11,23 @@
         android:id="@+id/imageView"
         android:layout_width="357dp"
         android:layout_height="356dp"
+        android:layout_marginTop="124dp"
         android:src="@drawable/logo"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo"
         tools:srcCompat="@drawable/logo" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="248dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="108dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.111"
+        app:srcCompat="@drawable/propietarios" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,15 +28,38 @@
         android:layout_marginEnd="32dp"
         android:background="@color/white"
         android:ems="10"
-        android:hint="Escriba su correo"
+        android:fontFamily="sans-serif-thin"
+        android:hint="Correo"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:textColor="#000000"
+        android:textColorHint="#575555"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <EditText
+        android:id="@+id/txtcontra"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:fontFamily="sans-serif-thin"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textColor="#000000"
+        android:textColorHint="#575555"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtcorreo" />
 
     <Button
         android:id="@+id/btniniciar"
@@ -129,22 +152,4 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/txtcontra"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="Escriba su contraseña"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtcorreo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

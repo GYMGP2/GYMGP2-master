@@ -63,8 +63,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="15dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -81,7 +82,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
-                        android:background="#2196F3"
+                        android:backgroundTint="#03A9F4"
                         android:text="Tomar Foto"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -93,7 +94,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
-                        android:background="#2196F3"
+                        android:backgroundTint="#03A9F4"
                         android:text="Galería"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -102,8 +103,8 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="343dp"
-                android:layout_height="531dp"
+                android:layout_width="344dp"
+                android:layout_height="572dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:orientation="vertical">
@@ -117,9 +118,11 @@
                     android:layout_marginBottom="10dp"
                     android:background="@color/white"
                     android:ems="10"
+                    android:fontFamily="sans-serif-thin"
                     android:hint="Escriba su nombre"
                     android:inputType="textPersonName"
                     android:textColor="#000000"
+                    android:textColorHint="#575555"
                     android:textStyle="bold" />
 
                 <EditText
@@ -131,23 +134,29 @@
                     android:layout_marginBottom="10dp"
                     android:background="@color/white"
                     android:ems="10"
+                    android:fontFamily="sans-serif-thin"
                     android:hint="Escriba sus apellidos"
                     android:inputType="textPersonName"
                     android:textColor="#000000"
+                    android:textColorHint="#575555"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/txtfecha"
+                <TextView
+                    android:id="@+id/textView10"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="10dp"
-                    android:background="@color/white"
+                    android:background="#FFFFFF"
                     android:ems="10"
+                    android:fontFamily="sans-serif-thin"
+                    android:gravity="fill_vertical"
                     android:hint="dd-mm-yyyy"
-                    android:inputType="date"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:textColorHint="#575555"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/spinner"
@@ -156,7 +165,8 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="10dp"
-                    android:background="@color/white" />
+                    android:background="#FFFFFF"
+                    android:backgroundTint="#2196F3" />
 
                 <EditText
                     android:id="@+id/txttelefono"
@@ -167,9 +177,11 @@
                     android:layout_marginBottom="10dp"
                     android:background="@color/white"
                     android:ems="10"
+                    android:fontFamily="sans-serif-thin"
                     android:hint="Escriba su telefono"
                     android:inputType="phone"
                     android:textColor="#000000"
+                    android:textColorHint="#575555"
                     android:textStyle="bold" />
 
                 <EditText
@@ -181,37 +193,43 @@
                     android:layout_marginBottom="10dp"
                     android:background="#FFFFFF"
                     android:ems="10"
+                    android:fontFamily="sans-serif-thin"
                     android:hint="Escriba su correo"
                     android:inputType="textEmailAddress"
                     android:textColor="#000000"
+                    android:textColorHint="#575555"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/txtcontra2"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="48dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="10dp"
                     android:background="#FFFFFF"
                     android:ems="10"
+                    android:fontFamily="sans-serif-thin"
                     android:hint="Escriba una contraseña"
                     android:inputType="textPassword"
                     android:textColor="#000000"
+                    android:textColorHint="#575555"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/txtcontra3"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="48dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="15dp"
                     android:background="@color/white"
                     android:ems="10"
+                    android:fontFamily="sans-serif-thin"
                     android:hint="Repita la contraseña anterior"
                     android:inputType="textPassword"
                     android:textColor="#000000"
+                    android:textColorHint="#575555"
                     android:textStyle="bold" />
 
                 <Button
@@ -220,7 +238,7 @@
                     android:layout_height="48dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:background="#2196F3"
+                    android:backgroundTint="#03A9F4"
                     android:text="Registrar"
                     android:textSize="16sp"
                     android:textStyle="bold" />
