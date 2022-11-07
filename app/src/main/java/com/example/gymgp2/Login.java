@@ -9,16 +9,28 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.gymgp2.Contextos.Api;
+//import com.example.runninghn.Modelo.Usuario;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Login extends AppCompatActivity {
@@ -78,9 +90,9 @@ public class Login extends AppCompatActivity {
         //Haciendo que los datos no se pierda
         preferenciascompartidas = getSharedPreferences("credenciales",Context.MODE_PRIVATE);
         String usuario = preferenciascompartidas.getString("usuario","");
-        String contraseña = preferenciascompartidas.getString("password","");
+        String contrasenia = preferenciascompartidas.getString("password","");
         txtcorreo.setText(usuario);
-        txtcontra.setText(contraseña);
+        txtcontra.setText(contrasenia);
 
 
         //CREDENCIALES PUBLICAS PARA LLAMAR EN LAS ACTIVIDADES Y EVITAR QUE LA INFORMACION SE PIERDA//
@@ -91,24 +103,24 @@ public class Login extends AppCompatActivity {
             //Toast.makeText(getApplicationContext(), "Bienvenido ", Toast.LENGTH_SHORT).show();
         }else {
             chguardar.setChecked(true);
-            //loginUsuario(usuario, contraseña);
+            loginUsuario(usuario, contrasenia);
         }
 
     }
 
 
-    /*
+
     //Metodo LoginUsuario
-    private void loginUsuario(String correo, String clave) {
+    private void loginUsuario(String usuario, String contrasenia) {
         //Una RequestQueue necesita dos cosas a fin de realizar su trabajo: una red mediante la cual transportar las solicitudes y una caché para administrar el almacenamiento en caché  y va de la mano con Volley
         RequestQueue queue = Volley.newRequestQueue(this);
         //Implementación basada en tablas hash de la interfaz Map . Esta implementación proporciona todas las operaciones de mapa opcionales y permite valores nulos y la clave nula .
         //Con el Hash Map capturamos los parametros
         HashMap<String, String> parametros = new HashMap<>();
-        parametros.put("email", correo);
-        parametros.put("clave", clave);
+        parametros.put("email", usuario);
+        parametros.put("clave", contrasenia);
         //Creamos un objeto de solicitud de JSON con parametros de Posteo de la solicitud y el validar en la API
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, RestApiMethods.EndPointValidarLogin,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, Api.EndPointValidarLogin,
                 new JSONObject(parametros), new Response.Listener<JSONObject>() {
             //Ejecuta el metodo para ver si tiene respuesta de que si son los parametros
             @Override
@@ -123,19 +135,19 @@ public class Login extends AppCompatActivity {
                         JSONObject RowMensaje = mensajeArray.getJSONObject(i);
                         mensaje = RowMensaje.getString("mensaje");
                         codigo = RowMensaje.getString("codigo_usuario");
-                        RestApiMethods.correo = txtcorreo.getText().toString();
-                        RestApiMethods.codigo_usuario = codigo;
+                        Api.correo = txtcorreo.getText().toString();
+                        Api.codigo_usuario = codigo;
                     }
 
                     //Si la base de datos me dice que si estan los paramatros me hace otra validacion
                     if (mensaje.equals("login exitoso")){
                         //Accede a las credenciales "contraseña y correo"
-                        mSharedPrefs = getSharedPreferences("credenciales",Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = mSharedPrefs.edit();
+                        preferenciascompartidas = getSharedPreferences("credenciales",Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferenciascompartidas.edit();
                         //Cuando se le da el check se Guardan las credenciales si esta chequeado
-                        if (Recordar.isChecked()){
+                        if (chguardar.isChecked()){
                             String user = txtcorreo.getText().toString();
-                            String pass = txtcontrasenia.getText().toString();
+                            String pass = txtcontra.getText().toString();
                             editor.putString("usuario",user);
                             editor.putString("password",pass);
                             editor.commit();
@@ -150,9 +162,9 @@ public class Login extends AppCompatActivity {
                             /*Interfaz utilizada para modificar valores en un SharedPreferences objeto. Todos los cambios que realiza en un editor
                             se procesan por lotes y no se copian al original SharedPreferenceshasta que llama commit() oapply() Resumen*/
 
-    /*
-                        mSharedPrefsPublico = getSharedPreferences("credencialesPublicas",Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editorPublico = mSharedPrefsPublico.edit();
+
+                        preferenciascompartidaspublicas = getSharedPreferences("credencialesPublicas",Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editorPublico = preferenciascompartidaspublicas.edit();
                         String userPublic = txtcorreo.getText().toString();
                         editorPublico.putString("correo",txtcorreo.getText().toString());
                         editorPublico.putString("idusuario",codigo );
@@ -170,7 +182,7 @@ public class Login extends AppCompatActivity {
                         finish();
                     }else{
                         //Nos va aparecer una alerta que nos diga que las credenciales estan invalidas y nos aparecera el boton ok que nos quitara el mensaje.
-                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(estecontexto);
                         alertDialogBuilder.setTitle("Datos invalidos");
                         alertDialogBuilder
                                 .setMessage("Verifique su correo o contraseña")
@@ -201,7 +213,7 @@ public class Login extends AppCompatActivity {
 
     }
 
-*/
+
 
 
 
