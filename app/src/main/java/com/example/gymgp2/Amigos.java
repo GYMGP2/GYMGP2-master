@@ -7,38 +7,37 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-public class Menu extends AppCompatActivity {
+public class Amigos extends AppCompatActivity {
 
-    ImageView btnamigos,btnatras2;
+    ImageView btnatras5,btnanadir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_amigos);
 
         casteo();
 
-        btnatras2.setOnClickListener(new View.OnClickListener() {
+        btnatras5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intencion = new Intent(getApplicationContext(),Login.class);
+                Intent intencion = new Intent(getApplicationContext(),Menu.class);
                 startActivity(intencion);
             }
         });
 
-        btnamigos.setOnClickListener(new View.OnClickListener() {
+        btnanadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intencion = new Intent(getApplicationContext(),Amigos.class);
+                Intent intencion = new Intent(getApplicationContext(),AnadirAmigos.class);
                 startActivity(intencion);
             }
         });
-
 
     }
 
     public void casteo(){
-        btnamigos = (ImageView) findViewById(R.id.btnamigos);
-        btnatras2 = (ImageView) findViewById(R.id.btnatras2);
+        btnatras5 = (ImageView) findViewById(R.id.btnatras5);
+        btnanadir = (ImageView) findViewById(R.id.btnanadir);
     }
 }
