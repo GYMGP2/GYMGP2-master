@@ -1,15 +1,10 @@
 package com.example.gymgp2;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,10 +12,10 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.opengl.EGLExt;
-import android.os.Build;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -34,10 +29,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.gymgp2.Contextos.Api;
@@ -47,11 +49,24 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 
 public class Registro extends AppCompatActivity {
 
@@ -60,23 +75,32 @@ public class Registro extends AppCompatActivity {
     static final int peticion_captura_imagen =101;
     static final int peticion_acceso_cam=100;
     Uri imageUri;
+    Session session = null;
+    ProgressDialog pdialog = null;
     ImageView btnatras;
-    ImageView foto;
+    ImageView foto, btnsalvar;
     Button btntomarfoto, btngaleria;
     Bitmap imagen;
     TextView txtfecha, txtpeso;
     Spinner sppais;
+    EditText txtnombre, txtapellido, txtcorreo,txttelefono,txtcontra;
     ArrayList<String> arrayPaises;
     Pais pais;
-    int codigopais;
+    String para, asunto, mensaje, contra;
+    int codigopais, codigo;
+    final Context context = this;
     private DatePickerDialog.OnDateSetListener fechalist;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
-
+        Random random = new Random();
+        codigo = random.nextInt(8999) + 1000;
         casteo();
+
+        intent = new Intent(getApplicationContext(), Registro.class);
 txtfecha.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
@@ -172,9 +196,207 @@ txtfecha.setOnClickListener(new View.OnClickListener() {
             permisos();
             }
         });
+    btnsalvar.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            ValidarCampos();
+        }
+    });
+    }
+public void ValidarCampos(){
+    if (foto.getDrawable() == null){
+        Toast.makeText(getApplicationContext(), "Debe agregar una Fotografia" ,Toast.LENGTH_LONG).show();
+    }else if(txtnombre.getText().toString().equals("")){
+        Toast.makeText(getApplicationContext(), "Debe de escribir un nombre" ,Toast.LENGTH_LONG).show();
+    }else if(txtapellido.getText().toString().equals("")) {
+        Toast.makeText(getApplicationContext(), "Debe de escribir un apellido", Toast.LENGTH_LONG).show();
+    }else if(txtfecha.getText().toString().equals("")) {
+        Toast.makeText(getApplicationContext(), "Selecione una fecha de nacimiento", Toast.LENGTH_LONG).show();
+    }else if(arrayPaises.size()==0) {
+        Toast.makeText(getApplicationContext(), "Debe selecionar un pais", Toast.LENGTH_LONG).show();
+    }else if(txttelefono.getText().toString().equals("")) {
+        Toast.makeText(getApplicationContext(), "Debe de escribir un telefono", Toast.LENGTH_LONG).show();
+    }else if(txtcorreo.getText().toString().equals("")) {
+        Toast.makeText(getApplicationContext(), "Debe de escribir un Correo", Toast.LENGTH_LONG).show();
+    }else if(txtcontra.getText().toString().equals("")) {
+        Toast.makeText(getApplicationContext(), "Debe de escribir un contraseña", Toast.LENGTH_LONG).show();
+    }else if(txtpeso.getText().toString().equals("")) {
+        Toast.makeText(getApplicationContext(), "Debe de seleccionar su peso", Toast.LENGTH_LONG).show();
+    }else{
+ValidarCorreo();
+    }
+    }
+    public void ConfigurarCorreo(){
+        //Almacenamos los datos obtenido en sus respectivas variables para el envio del correo
+        para = txtcorreo.getText().toString();
+        asunto = "Codigo de Verificación - RUNNING FORCE";
+        mensaje = "Hola "+txtnombre.getText().toString()+" "+txtapellido.getText().toString()+", \n"+"Su codigo de verificacion es: "+codigo;
+
+        //creamos las propiedades
+        Properties properties = new Properties ();
+
+        //configurando propiedades para email
+        //si vamos a utilizar otro servidor tnemos que cambiar los valores
+        properties.put("mail.smtp.host", "smtp.gmail.com");//host
+        properties.put("mail.smtp.starttls.enable", "true");//Habilitar starttlls de smtp de correo
+        properties.put("mail.smtp.port", "587");//puerto
+        properties.put("mail.smtp.user", "uthgym@gmail.com");//correo de emisor
+        properties.put("mail.smtp.auth", "true");//Autorizacion de envio
+
+        //STARTTLS es una extencion a los protocolos de comunicacion de texto plano,
+        //que ofrese una forma de mejorar desde una conexion de exto plano a una conexion cifrada,
+        //(TLS O SSL) en lugar de utilizar un puerto diferente para la comunicacion cifrada.
+
+        //Creamos la nueva sesion
+        session = Session.getDefaultInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("uthgym@gmail.com", "besxdhlnslshtvdg");
+            }
+        });
+        session.setDebug(true);//Esto es para depurar una vez funcione bien lo podemos quitar
+
+        pdialog = ProgressDialog.show(this, "","Enviando correo", true);
+
+
+        Registro.enviar_correo task = new Registro.enviar_correo(); //llamamos a la clase enviar correo
+        task.execute();
+
+
+    }
+    class enviar_correo extends AsyncTask<String, Void, String> {
+
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                //Creando objeto MimeMessage
+                MimeMessage message = new MimeMessage(session);
+                //Configuracion de la direccion del remitente
+                message.setFrom(new InternetAddress("uthgym@gmail.com"));
+                //Anadimos el receptor
+                message.addRecipient(Message.RecipientType.TO,
+                        new InternetAddress(para));
+                message.setSubject(asunto);
+                message.setText(mensaje);
+
+                //lo enviamos
+                Transport t = session.getTransport("smtp");
+                t.connect("uthgym@gmail.com","besxdhlnslshtvdg");
+                t.sendMessage(message, message.getAllRecipients());
+
+                //cierre
+                t.close();
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(String result){
+            pdialog.dismiss();
+            Toast.makeText(getApplicationContext(),"Mensaje enviado", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private String ValidarCorreo(){
+
+        contra = txtcontra.getText().toString();
+        ConfigurarCorreo();
+        final EditText taskEditText = new EditText(context);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        alertDialogBuilder.setTitle("Verifique su correo");
+        alertDialogBuilder
+                .setMessage("hemos enviado un correo con su codigo de verificación")
+                .setView(taskEditText)
+                .setCancelable(true)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int id) {
+                                int task = Integer.valueOf(taskEditText.getText().toString());
+                                if (codigo == task) {
+                                    RegistrarUsuario();
+                                    Toast.makeText(getApplicationContext(), "codigo valido", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "codigo invalido", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+                );
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+return contra;
+    }
+    private void RegistrarUsuario() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        HashMap<String, String> parametros = new HashMap<>();
+
+        String fotoString = GetStringImage(imagen);
+
+        parametros.put("nombres", txtnombre.getText().toString());
+        parametros.put("apellidos", txtapellido.getText().toString());
+        parametros.put("telefono", txttelefono.getText().toString());
+        parametros.put("email", txtcorreo.getText().toString());
+        parametros.put("clave", contra);
+        parametros.put("fecha_nac", txtfecha.getText().toString());
+        parametros.put("peso", txtpeso.getText().toString());
+        parametros.put("codigo_pais", codigopais+"");
+        parametros.put("foto",  fotoString);
+        parametros.put("estado","1");
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, Api.EndPointCreateUsuario,
+                new JSONObject(parametros), new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Toast.makeText(getApplicationContext(), "String Response " + response.getString("mensaje").toString(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(),Login.class);
+                    startActivity(intent);
+                    finish();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
+        limpiar();
+    }
+
+    private void limpiar(){
+        txtnombre.setText("");
+        txtapellido.setText("");
+        txttelefono.setText("");
+        txtcorreo.setText("");
+        txtfecha.setText("");
+        txtpeso.setText("");
+
         }
 
-    public void casteo() {
+    private String GetStringImage(Bitmap photo) {
+
+        try {
+            ByteArrayOutputStream ba = new ByteArrayOutputStream();
+            photo.compress(Bitmap.CompressFormat.JPEG, 70, ba);
+            byte[] imagebyte = ba.toByteArray();
+            String encode = Base64.encodeToString(imagebyte, Base64.DEFAULT);
+
+            return encode;
+        }catch (Exception ex)
+        {
+            ex.toString();
+        }
+        return "";
+    }
+        public void casteo() {
 
         btntomarfoto = (Button) findViewById(R.id.btntomarfoto);
         btngaleria = (Button) findViewById(R.id.btngaleria);
@@ -183,6 +405,11 @@ txtfecha.setOnClickListener(new View.OnClickListener() {
         txtfecha = (TextView) findViewById(R.id.txtfecha);
         txtpeso = (TextView) findViewById(R.id.txtpeso);
         sppais = (Spinner) findViewById(R.id.spinnerpais);
+        btnsalvar = (ImageView) findViewById(R.id.btnguardar);
+        txtnombre = (EditText) findViewById(R.id.txtnombre);
+        txtapellido = (EditText) findViewById(R.id.txtapellidos);
+        txtcorreo = (EditText) findViewById(R.id.txtcorreo);
+        txtcontra = (EditText) findViewById(R.id.txtcontra);
     }
 
     public void abrirGaleria() {

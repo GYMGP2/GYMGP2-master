@@ -204,7 +204,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/txtcorreo2"
+                    android:id="@+id/txtcorreo"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginLeft="5dp"
@@ -220,7 +220,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/txtcontra2"
+                    android:id="@+id/txtcontra"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginLeft="5dp"
@@ -236,7 +236,7 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/btnactualizar"
+                    android:id="@+id/btnguardar"
                     android:layout_width="364dp"
                     android:layout_height="111dp"
                     android:layout_marginLeft="10dp"
