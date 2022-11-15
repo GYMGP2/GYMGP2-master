@@ -65,7 +65,7 @@
             android:name=".Recuperar"
             android:exported="false" />
         <activity
-            android:name=".Inicio"
+            android:name=".Menu"
             android:exported="false" />
         <activity
             android:name=".Registro"
@@ -78,7 +78,7 @@
             android:value="AIzaSyCaCgj84fV1j4uLD7kefOg63yNz-QZiaT0" />
 
         <activity
-            android:name=".Menu"
+            android:name=".Inicio"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

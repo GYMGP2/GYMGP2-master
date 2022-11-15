@@ -199,7 +199,7 @@ txtfecha.setOnClickListener(new View.OnClickListener() {
     btnsalvar.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            ValidarCampos();
+            ValidarCorreo();
         }
     });
     }
@@ -309,7 +309,7 @@ ValidarCorreo();
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
         alertDialogBuilder.setTitle("Verifique su correo");
         alertDialogBuilder
-                .setMessage("hemos enviado un correo con su codigo de verificación")
+                .setMessage("Se ha enviado un código de verificación a "+txtcorreo.getText().toString())
                 .setView(taskEditText)
                 .setCancelable(true)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -318,9 +318,9 @@ ValidarCorreo();
                                 int task = Integer.valueOf(taskEditText.getText().toString());
                                 if (codigo == task) {
                                     RegistrarUsuario();
-                                    Toast.makeText(getApplicationContext(), "codigo valido", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Código Válido", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(getApplicationContext(), "codigo invalido", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Código Inválido", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }
@@ -410,6 +410,7 @@ return contra;
         txtapellido = (EditText) findViewById(R.id.txtapellidos);
         txtcorreo = (EditText) findViewById(R.id.txtcorreo);
         txtcontra = (EditText) findViewById(R.id.txtcontra);
+        txttelefono = (EditText) findViewById(R.id.txttelefono);
     }
 
     public void abrirGaleria() {
