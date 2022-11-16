@@ -199,29 +199,31 @@ txtfecha.setOnClickListener(new View.OnClickListener() {
     btnsalvar.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            ValidarCorreo();
+            ValidarCampos();
         }
     });
     }
 public void ValidarCampos(){
     if (foto.getDrawable() == null){
-        Toast.makeText(getApplicationContext(), "Debe agregar una Fotografia" ,Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Por favor ingrese una imagen" ,Toast.LENGTH_LONG).show();
     }else if(txtnombre.getText().toString().equals("")){
-        Toast.makeText(getApplicationContext(), "Debe de escribir un nombre" ,Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Por favor ingrese su nombre" ,Toast.LENGTH_LONG).show();
     }else if(txtapellido.getText().toString().equals("")) {
-        Toast.makeText(getApplicationContext(), "Debe de escribir un apellido", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Por favor ingrese sus apellidos", Toast.LENGTH_LONG).show();
     }else if(txtfecha.getText().toString().equals("")) {
-        Toast.makeText(getApplicationContext(), "Selecione una fecha de nacimiento", Toast.LENGTH_LONG).show();
-    }else if(arrayPaises.size()==0) {
-        Toast.makeText(getApplicationContext(), "Debe selecionar un pais", Toast.LENGTH_LONG).show();
-    }else if(txttelefono.getText().toString().equals("")) {
-        Toast.makeText(getApplicationContext(), "Debe de escribir un telefono", Toast.LENGTH_LONG).show();
-    }else if(txtcorreo.getText().toString().equals("")) {
-        Toast.makeText(getApplicationContext(), "Debe de escribir un Correo", Toast.LENGTH_LONG).show();
-    }else if(txtcontra.getText().toString().equals("")) {
-        Toast.makeText(getApplicationContext(), "Debe de escribir un contraseña", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Por favor seleccione su fecha de nacimiento", Toast.LENGTH_LONG).show();
+    }else if(sppais.getSelectedItem().toString().equals("")) {
+        Toast.makeText(getApplicationContext(), "Por favor seleccione su país", Toast.LENGTH_LONG).show();
     }else if(txtpeso.getText().toString().equals("")) {
-        Toast.makeText(getApplicationContext(), "Debe de seleccionar su peso", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Por favor seleccione su peso", Toast.LENGTH_LONG).show();
+    }else if(txttelefono.getText().toString().equals("")) {
+        Toast.makeText(getApplicationContext(), "Por favor ingrese su teléfono", Toast.LENGTH_LONG).show();
+    }else if(txttelefono.length()<8) {
+        Toast.makeText(getApplicationContext(), "Por favor ingrese un teléfono válido", Toast.LENGTH_LONG).show();
+    }else if(txtcorreo.getText().toString().equals("")) {
+        Toast.makeText(getApplicationContext(), "Por favor ingrese su correo electrónico", Toast.LENGTH_LONG).show();
+    }else if(txtcontra.getText().toString().equals("")) {
+        Toast.makeText(getApplicationContext(), "Por favor ingrese una contraseña", Toast.LENGTH_LONG).show();
     }else{
 ValidarCorreo();
     }
@@ -230,7 +232,7 @@ ValidarCorreo();
         //Almacenamos los datos obtenido en sus respectivas variables para el envio del correo
         para = txtcorreo.getText().toString();
         asunto = "Codigo de Verificación - RUNNING FORCE";
-        mensaje = "Hola "+txtnombre.getText().toString()+" "+txtapellido.getText().toString()+", \n"+"Su codigo de verificacion es: "+codigo;
+        mensaje = "Hola "+txtnombre.getText().toString()+" "+txtapellido.getText().toString()+", \n"+"Su código de verificación es: "+codigo;
 
         //creamos las propiedades
         Properties properties = new Properties ();
@@ -353,7 +355,7 @@ return contra;
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    Toast.makeText(getApplicationContext(), "String Response " + response.getString("mensaje").toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "" + response.getString("mensaje").toString(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(),Login.class);
                     startActivity(intent);
                     finish();

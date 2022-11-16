@@ -201,8 +201,9 @@
                     android:hint="Escriba su telefono"
                     android:inputType="phone"
                     android:textColor="#000000"
+                    android:textStyle="bold"
                     android:textColorHint="#575555"
-                    android:textStyle="bold" />
+                    android:maxLength="8"/>
 
                 <EditText
                     android:id="@+id/txtcorreo"
