@@ -2,7 +2,9 @@ package com.example.gymgp2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,8 +23,14 @@ public class Menu extends AppCompatActivity {
         btnatras2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intencion = new Intent(getApplicationContext(),Login.class);
-                startActivity(intencion);
+                SharedPreferences mSharedPrefs = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = mSharedPrefs.edit();
+                editor.putString("usuario","");
+                editor.putString("password","");
+                editor.commit();
+                Intent intent = new Intent(getApplicationContext(), Login.class);
+                startActivity(intent);
+                finish();
             }
         });
 

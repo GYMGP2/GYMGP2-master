@@ -54,6 +54,18 @@ public class Login extends AppCompatActivity {
         //Llamado al metodo que hace que no se pierdan los datos por medio del checkbox
         preferenciasCompartidas();
 
+        btniniciar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String usuario = txtcorreo.getText().toString();
+                String contrasenia = txtcontra.getText().toString();
+                loginUsuario(usuario,contrasenia);
+
+                Api.correo = txtcorreo.getText().toString();
+
+            }
+        });
+
         //boton para crear una cuenta
         btncuenta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,11 +224,5 @@ public class Login extends AppCompatActivity {
         queue.add(jsonObjectRequest);
 
     }
-
-
-
-
-
-
 
 }
