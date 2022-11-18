@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 public class Inicio extends AppCompatActivity {
 
-    static final int LOCATION_GPS_REQUEST = 100;
+    static final int LOCATION_GPS_REQUEST = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
