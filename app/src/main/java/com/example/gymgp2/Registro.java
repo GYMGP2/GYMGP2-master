@@ -71,7 +71,7 @@ import javax.mail.internet.MimeMessage;
 public class Registro extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private static final int PICK_IMAGE = 200;
+    private static final int PICK_IMAGE = 20;
     static final int peticion_captura_imagen =101;
     static final int peticion_acceso_cam=100;
     Uri imageUri;
