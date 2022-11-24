@@ -14,8 +14,22 @@ public class Cuentas {
     public int idpais;
     public String pais;
 
+
     public Cuentas() {
 
+    }
+
+    public Cuentas(int id, String nombres, String apellidos, String nacimiento, String telefono, String correo, String peso, String foto, int idpais, String pais) {
+        this.id = id;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.nacimiento = nacimiento;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.peso = peso;
+        this.foto = foto;
+        this.idpais = idpais;
+        this.pais = pais;
     }
 
     public Cuentas(int id, String nombres, String apellidos, String nacimiento, String telefono, String correo, String clave, String peso, String foto, int idpais, String pais) {
@@ -31,6 +45,8 @@ public class Cuentas {
         this.idpais = idpais;
         this.pais = pais;
     }
+
+
 
     public int getId() {
         return id;

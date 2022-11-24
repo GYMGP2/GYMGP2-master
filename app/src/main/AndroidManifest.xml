@@ -62,6 +62,9 @@
             android:name=".Actualizar"
             android:exported="false" />
         <activity
+            android:name=".MiPerfil"
+            android:exported="false" />
+        <activity
             android:name=".Recuperar"
             android:exported="false" />
         <activity

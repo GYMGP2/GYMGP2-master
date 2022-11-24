@@ -98,10 +98,11 @@ public class Registro extends AppCompatActivity {
         setContentView(R.layout.activity_registro);
         Random random = new Random();
         codigo = random.nextInt(8999) + 1000;
+
         casteo();
 
         intent = new Intent(getApplicationContext(), Registro.class);
-txtfecha.setOnClickListener(new View.OnClickListener() {
+        txtfecha.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
         Calendar cal = Calendar.getInstance();
@@ -175,6 +176,7 @@ txtfecha.setOnClickListener(new View.OnClickListener() {
 
             }
         });
+
         btnatras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -202,7 +204,12 @@ txtfecha.setOnClickListener(new View.OnClickListener() {
             ValidarCampos();
         }
     });
+
+
     }
+
+    //Desde aqui se termina el OnCreate
+
 public void ValidarCampos(){
     if (foto.getDrawable() == null){
         Toast.makeText(getApplicationContext(), "Por favor ingrese una imagen" ,Toast.LENGTH_LONG).show();
@@ -398,21 +405,22 @@ return contra;
         }
         return "";
     }
+
         public void casteo() {
 
-        btntomarfoto = (Button) findViewById(R.id.btntomarfoto);
-        btngaleria = (Button) findViewById(R.id.btngaleria);
+        btntomarfoto = (Button) findViewById(R.id.btntomarfoto2);
+        btngaleria = (Button) findViewById(R.id.btngaleria2);
         btnatras = (ImageView) findViewById(R.id.btnatras);
-        foto = (ImageView) findViewById(R.id.foto);
-        txtfecha = (TextView) findViewById(R.id.txtfecha);
-        txtpeso = (TextView) findViewById(R.id.txtpeso);
-        sppais = (Spinner) findViewById(R.id.spinnerpais);
-        btnsalvar = (ImageView) findViewById(R.id.btnguardar);
-        txtnombre = (EditText) findViewById(R.id.txtnombre);
-        txtapellido = (EditText) findViewById(R.id.txtapellidos);
-        txtcorreo = (EditText) findViewById(R.id.txtcorreo);
-        txtcontra = (EditText) findViewById(R.id.txtcontra);
-        txttelefono = (EditText) findViewById(R.id.txttelefono);
+        foto = (ImageView) findViewById(R.id.foto4);
+        txtfecha = (TextView) findViewById(R.id.txtfecha3);
+        txtpeso = (TextView) findViewById(R.id.txtpeso3);
+        sppais = (Spinner) findViewById(R.id.spinnerpais2);
+        btnsalvar = (ImageView) findViewById(R.id.btnactualizar2);
+        txtnombre = (EditText) findViewById(R.id.txtnombre3);
+        txtapellido = (EditText) findViewById(R.id.txtapellidos3);
+        txtcorreo = (EditText) findViewById(R.id.txtcorreo4);
+        txtcontra = (EditText) findViewById(R.id.txtcontra2);
+        txttelefono = (EditText) findViewById(R.id.txttelefono3);
     }
 
     public void abrirGaleria() {
@@ -470,6 +478,7 @@ return contra;
             foto.setImageBitmap(imagen);
         }
     }
+
     private void SpinnerPaises(){
         RequestQueue queue = Volley.newRequestQueue(this);
 

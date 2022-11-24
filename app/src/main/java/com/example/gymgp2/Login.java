@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -21,7 +20,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.gymgp2.Contextos.Api;
 //import com.example.runninghn.Modelo.Usuario;
@@ -30,7 +28,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Login extends AppCompatActivity {
@@ -93,8 +90,8 @@ public class Login extends AppCompatActivity {
         btncuenta = (TextView) findViewById(R.id.btncuenta);
         btniniciar = (Button) findViewById(R.id.btniniciar);
         chguardar = (CheckBox) findViewById(R.id.chguardar);
-        txtcorreo = (EditText) findViewById(R.id.txtcorreo);
-        txtcontra = (EditText) findViewById(R.id.txtcontra);
+        txtcorreo = (EditText) findViewById(R.id.txtcorreo4);
+        txtcontra = (EditText) findViewById(R.id.txtcontra2);
     }
 
 
