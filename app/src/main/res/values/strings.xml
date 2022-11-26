@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">GYMGP2</string>
+    <string name="title_home">Perfil</string>
+    <string name="title_dashboard">Corredores</string>
+    <string name="title_notifications">Progreso</string>
+    <string name="action_settings">Settings</string>
 </resources>

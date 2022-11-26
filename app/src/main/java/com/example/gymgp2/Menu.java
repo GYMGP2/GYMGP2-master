@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 public class Menu extends AppCompatActivity {
 
-    ImageView btnamigos,btnatras2,btnperfil,btncalificacion;
+    ImageView btnamigos,btnatras2,btnperfil,btncalificacion, btnnuevacarrera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,13 @@ public class Menu extends AppCompatActivity {
                 startActivity(intencion);
             }
         });
-
+        btnnuevacarrera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intencion = new Intent(getApplicationContext(),NuevaCarrera.class);
+                startActivity(intencion);
+            }
+        });
 
     }
 
@@ -66,5 +72,6 @@ public class Menu extends AppCompatActivity {
         btnatras2 = (ImageView) findViewById(R.id.btnatras2);
         btnperfil = (ImageView) findViewById(R.id.btnperfil);
         btncalificacion = (ImageView) findViewById(R.id.btncalificacion);
+        btnnuevacarrera = (ImageView) findViewById(R.id.btnnuevacarrera);
     }
 }
