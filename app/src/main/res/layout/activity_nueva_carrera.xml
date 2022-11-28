@@ -17,7 +17,7 @@
         android:ems="10"
         android:enabled="false"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/textView34"
+        app:layout_constraintStart_toEndOf="@+id/viewsemanterior"
         app:layout_constraintTop_toBottomOf="@+id/btnComenzar" />
 
     <EditText
@@ -40,7 +40,7 @@
         android:layout_marginTop="36dp"
         android:text="Longitud"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView34" />
+        app:layout_constraintTop_toBottomOf="@+id/viewsemanterior" />
 
     <EditText
         android:id="@+id/txtLon"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtLat" />
 
     <TextView
-        android:id="@+id/textView34"
+        android:id="@+id/viewsemanterior"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
