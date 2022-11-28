@@ -1,5 +1,9 @@
 package com.example.gymgp2;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +15,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -19,12 +24,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,8 +35,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.gymgp2.Contextos.Api;
-import com.example.gymgp2.databinding.ActivityMapsBinding;
 import com.example.gymgp2.UI.DashBoard.DashboardFragment;
+import com.example.gymgp2.databinding.ActivityMapsBinding;
 import com.google.android.gms.maps.GoogleMap;
 
 import org.json.JSONException;
@@ -45,7 +47,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-public class NuevaCarrera extends AppCompatActivity{
+public class ActivityNuevaCarrera extends AppCompatActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -68,9 +70,9 @@ public class NuevaCarrera extends AppCompatActivity{
 
     public static Button btnComenzar, btnDetener;
     EditText txtLat,txtLon, txtTiempo;
-
-    public static String latitud = "";
-    public static String longitud = "";
+    ImageView btnatras7;
+    public static String lati = "";
+    public static String longi = "";
     GoogleMap mMap;
     private ActivityMapsBinding binding;
     final String[] codigo_actividad = new String[1];
@@ -105,27 +107,22 @@ public class NuevaCarrera extends AppCompatActivity{
 
         iniciarTiempo();
 
-        btnComenzar = (Button) findViewById(R.id.btnComenzar);
-        //TextView btnComenzar = findViewById(R.id.btnComenzar);
-        //btnDetener = (Button) findViewById(R.id.btnDetener);
+casteo();
 
-        txtLat = (EditText) findViewById(R.id.txtLat);
-        txtLon = (EditText) findViewById(R.id.txtLon);
-        txtTiempo = (EditText) findViewById(R.id.nctiempo);
+        btnatras7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Menu.class);
+                startActivity(intent);
+            }
+        });
 
-
-//        btnDetener.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
         btnComenzar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (btnComenzar.getText().equals("Comenzar")){
-                    latitud = txtLat.getText().toString();
-                    longitud = txtLon.getText().toString();
+                    lati = txtLat.getText().toString();
+                    longi = txtLon.getText().toString();
                     btnComenzar.setText("DETENER");
 
                     running1 =true;
@@ -136,9 +133,9 @@ public class NuevaCarrera extends AppCompatActivity{
                 if (btnComenzar.getText().equals("DETENER")){
                     try {
                         String tiempo = txtTiempo.getText().toString();
-                        SharedPreferences mSharedPrefs = getSharedPreferences("credencialesPublicas",Context.MODE_PRIVATE);
+                        SharedPreferences mSharedPrefs = getSharedPreferences("credencialesPublicas", Context.MODE_PRIVATE);
                         String idusuario = mSharedPrefs.getString("idusuario","");
-                        guardarRecorrido(idusuario,DashboardFragment.km,tiempo);
+                        guardarRecorrido(idusuario, DashboardFragment.km,tiempo);
 
 
                         new CountDownTimer(5000, 1000) {
@@ -188,7 +185,13 @@ public class NuevaCarrera extends AppCompatActivity{
 
 
     }
-
+public  void casteo(){
+    btnComenzar = (Button) findViewById(R.id.btnComenzar);
+    txtLat = (EditText) findViewById(R.id.txtLat);
+    txtLon = (EditText) findViewById(R.id.txtLon);
+    txtTiempo = (EditText) findViewById(R.id.nctiempo);
+    btnatras7 = (ImageView) findViewById(R.id.btnatras7);
+}
 
 
 
@@ -282,8 +285,8 @@ public class NuevaCarrera extends AppCompatActivity{
     private void cerrarActividad(){
         getSupportFragmentManager().beginTransaction().
                 remove(getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView)).commit();
-        getSupportFragmentManager().beginTransaction().
-                remove(getSupportFragmentManager().findFragmentById(R.id.navigation_dashboard));
+        //getSupportFragmentManager().beginTransaction().
+                //remove(getSupportFragmentManager().findFragmentById(R.id.navigation_dashboard));
         Intent intent = new Intent(getApplicationContext(), Menu.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
         startActivity(intent);
@@ -300,7 +303,7 @@ public class NuevaCarrera extends AppCompatActivity{
 
     }
     private void iniciarTiempo() {
-        TextView timeview = findViewById(R.id.cronometro);
+        //TextView timeview = findViewById(R.id.cronometro);
 
         Handler handler = new Handler();
         handler.post(new Runnable() {
@@ -326,9 +329,9 @@ public class NuevaCarrera extends AppCompatActivity{
 
 
     public class Localizacion implements LocationListener {
-        NuevaCarrera mainActivity;
+        ActivityNuevaCarrera mainActivity;
 
-        public void setMainActivity(NuevaCarrera mainActivity) {
+        public void setMainActivity(ActivityNuevaCarrera mainActivity) {
             this.mainActivity = mainActivity;
         }
 
@@ -339,8 +342,8 @@ public class NuevaCarrera extends AppCompatActivity{
 
             loc.getLatitude();
             loc.getLongitude();
-            NuevaCarrera.setLatitud(loc.getLatitude()+"");
-            NuevaCarrera.setLongitud(loc.getLongitude()+"");
+            ActivityNuevaCarrera.setLatitud(loc.getLatitude()+"");
+            ActivityNuevaCarrera.setLongitud(loc.getLongitude()+"");
             txtLat.setText(loc.getLatitude()+"");
             txtLon.setText(loc.getLongitude()+"");
             this.mainActivity.setLocation(loc);
@@ -378,17 +381,17 @@ public class NuevaCarrera extends AppCompatActivity{
 
 
     public static void setLatitud(String latitud) {
-        NuevaCarrera.latitud = latitud;
+        ActivityNuevaCarrera.lati = latitud;
     }
     public static void setLongitud(String longitud) {
-        NuevaCarrera.longitud = longitud;
+        ActivityNuevaCarrera.longi = longitud;
     }
 
     public static Double getlatitud(){
-        return Double.valueOf(latitud);
+        return Double.parseDouble(lati);
     }
     public static Double getLongitud(){
-        return Double.valueOf(longitud);
+        return Double.parseDouble(longi);
     }
 
 
