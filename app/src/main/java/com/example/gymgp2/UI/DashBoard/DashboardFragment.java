@@ -1,22 +1,27 @@
 package com.example.gymgp2.UI.DashBoard;
 
+import androidx.lifecycle.ViewModelProvider;
+
 import android.graphics.Color;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
-import com.example.gymgp2.NuevaCarrera;
-import com.example.gymgp2.R;
+import com.example.gymgp2.ActivityNuevaCarrera;
 import com.example.gymgp2.databinding.ActivityMapsBinding;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+
+import com.example.gymgp2.R;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -28,8 +33,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardFragment extends Fragment implements OnMapReadyCallback {
-
-
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
@@ -114,22 +117,22 @@ public class DashboardFragment extends Fragment implements OnMapReadyCallback {
         //valida si tiene los permisos de ser asi manda a llamar el metodo locationStart()
 
         Double latitud = 0.0 ;
-        latitud= NuevaCarrera.getlatitud();
+        latitud= ActivityNuevaCarrera.getlatitud();
 
         Double longitud = 0.0;
-        longitud= NuevaCarrera.getLongitud();
-         LatLng pfinal = new LatLng(latitud, longitud);
+        longitud= ActivityNuevaCarrera.getLongitud();
+        LatLng pfinal = new LatLng(latitud, longitud);
 
         mMap.addMarker(new MarkerOptions().position(pfinal).title("Punto Inicial").icon(BitmapDescriptorFactory.defaultMarker()));
 
 
-        if (NuevaCarrera.btnComenzar.getText().equals("Comenzar")){
+        if (ActivityNuevaCarrera.btnComenzar.getText().equals("Comenzar")){
             pinicial= new LatLng(latitud, longitud);
 //            mMap.addMarker(new MarkerOptions().position(pinicial).title("Punto Inicial").icon(BitmapDescriptorFactory.defaultMarker()));
 //            Toast.makeText(getContext(), "Punto Inicial"+pinicial, Toast.LENGTH_SHORT).show();
         }
 
-        if(NuevaCarrera.btnComenzar.getText().equals("DETENER")) {
+        if(ActivityNuevaCarrera.btnComenzar.getText().equals("DETENER")) {
             if (pinicial != null) {
                 Double distancia = 0.0;
                 pfinal = pinicial;//actualizamos el punto inicial con el final
@@ -148,6 +151,4 @@ public class DashboardFragment extends Fragment implements OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pfinal, 17));
 
     }
-
-
 }

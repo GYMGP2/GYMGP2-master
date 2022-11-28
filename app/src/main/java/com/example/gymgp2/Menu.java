@@ -61,7 +61,7 @@ public class Menu extends AppCompatActivity {
         btnnuevacarrera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intencion = new Intent(getApplicationContext(),NuevaCarrera.class);
+                Intent intencion = new Intent(getApplicationContext(),ActivityNuevaCarrera.class);
                 startActivity(intencion);
             }
         });
