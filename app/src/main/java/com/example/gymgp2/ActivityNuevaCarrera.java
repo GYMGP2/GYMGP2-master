@@ -70,7 +70,7 @@ public class ActivityNuevaCarrera extends AppCompatActivity {
 
     public static Button btnComenzar, btnDetener;
     EditText txtLat,txtLon, txtTiempo;
-    ImageView btnatras7;
+    ImageView btnatras8;
     public static String lati = "";
     public static String longi = "";
     GoogleMap mMap;
@@ -109,7 +109,7 @@ public class ActivityNuevaCarrera extends AppCompatActivity {
 
 casteo();
 
-        btnatras7.setOnClickListener(new View.OnClickListener() {
+        btnatras8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),Menu.class);
@@ -190,7 +190,7 @@ public  void casteo(){
     txtLat = (EditText) findViewById(R.id.txtLat);
     txtLon = (EditText) findViewById(R.id.txtLon);
     txtTiempo = (EditText) findViewById(R.id.nctiempo);
-    btnatras7 = (ImageView) findViewById(R.id.btnatras7);
+    btnatras8 = (ImageView) findViewById(R.id.btnatras8);
 }
 
 
@@ -272,12 +272,7 @@ public  void casteo(){
             }
 
 
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Error "+error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        }, error -> Toast.makeText(getApplicationContext(), "Error "+error.toString(), Toast.LENGTH_SHORT).show());
 
         queue.add(jsonObjectRequest);
     }

@@ -8,7 +8,7 @@
     android:background="#000000"
     android:orientation="vertical">
     <ImageView
-        android:id="@+id/btnatras7"
+        android:id="@+id/btnatras8"
         android:layout_width="108dp"
         android:layout_height="67dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +34,6 @@
         android:layout_marginTop="28dp"
         android:text="Comenzar"
         android:backgroundTint="#2196F3"
-
         android:textColor="@color/white"
         android:textSize="20sp"
         android:layout_marginStart="104dp"
