@@ -75,7 +75,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         RequestQueue queue = Volley.newRequestQueue(this);
         HashMap<String, String> parametros = new HashMap<>();
         parametros.put("codigo_actividad", codigo_actividad);
-        String url = "http://transportweb2.online/API/listadetalleactividad.php";
+        String url = "https://elkinhn.online/APIG2/listadetalleactividad.php";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url,
                 new JSONObject(parametros), new Response.Listener<JSONObject>() {
 

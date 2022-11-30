@@ -104,10 +104,10 @@ public class ActivityNuevaCarrera extends AppCompatActivity {
 
         }
 
-
+        casteo();
         iniciarTiempo();
 
-casteo();
+
 
         btnatras8.setOnClickListener(new View.OnClickListener() {
             @Override
