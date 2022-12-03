@@ -1,8 +1,10 @@
 package com.example.gymgp2;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,7 +43,7 @@ public class Recuperar extends AppCompatActivity {
     EditText txtcorreo3;
     TextView btnregis; //Ingreso del correo a enviar
     //    Button enviar; //Boton para enviar el correo
-    ImageView btnrecuperar2;
+    ImageView btnrecuperar2,btnatras4;
 
 
     @Override
@@ -62,10 +64,28 @@ public class Recuperar extends AppCompatActivity {
 
             }
         });
+
+        btnatras4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Login.class);
+                startActivity(intent);
+            }
+        });
+
+        btnregis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Registro.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     public void casteo(){
         btnrecuperar2 = (ImageView) findViewById(R.id.btnrecuperar2);
+        btnatras4 = (ImageView) findViewById(R.id.btnatras4);
         btnregis = (TextView) findViewById(R.id.btnregis);
         txtcorreo3 = (EditText) findViewById(R.id.txtcorreo3);
     }
