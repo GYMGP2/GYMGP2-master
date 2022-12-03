@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 public class Menu extends AppCompatActivity {
 
-    ImageView btnamigos,btnatras2,btnperfil,btncalificacion, btnnuevacarrera,btnestadisticas;
+    ImageView btnamigos,btnatras2,btnperfil,btncalificacion, btnprogreso, btnnuevacarrera,btnestadisticas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +74,13 @@ public class Menu extends AppCompatActivity {
             }
         });
 
+    btnprogreso.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intencion = new Intent(getApplicationContext(),Progreso.class);
+            startActivity(intencion);
+        }
+    });
     }
 
     public void casteo(){
@@ -83,5 +90,6 @@ public class Menu extends AppCompatActivity {
         btncalificacion = (ImageView) findViewById(R.id.btncalificacion);
         btnnuevacarrera = (ImageView) findViewById(R.id.btnnuevacarrera);
         btnestadisticas = (ImageView) findViewById(R.id.btnestadisticas);
+        btnprogreso = (ImageView) findViewById(R.id.btnprogreso);
     }
 }

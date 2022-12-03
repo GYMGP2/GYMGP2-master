@@ -114,7 +114,7 @@ public class AnadirAmigos extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    JSONArray CuentaArray = response.getJSONArray("cuenta");
+                    JSONArray CuentaArray = response.getJSONArray("usuario");
 
                     listaCuentas.clear();//limpiar la lista de usuario antes de comenzar a listar
                     for (int i = 0; i < CuentaArray.length(); i++) {

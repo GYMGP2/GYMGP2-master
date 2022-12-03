@@ -121,7 +121,7 @@ public class Amigos extends AppCompatActivity {
                     listaCuentas.clear();//limpiar la lista de usuario antes de comenzar a listar
                     for (int i = 0; i < cuentasArray.length(); i++) {
                         JSONObject RowCuentas = cuentasArray.getJSONObject(i);
-                        cuentas = new Cuentas(RowCuentas.getInt("id"),
+                        cuentas = new Cuentas(RowCuentas.getInt("codigo_usuario"),
                                 RowCuentas.getString("nombres"),
                                 RowCuentas.getString("apellidos"),
                                 RowCuentas.getString("foto"));
