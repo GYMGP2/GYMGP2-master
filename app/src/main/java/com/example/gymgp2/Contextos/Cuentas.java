@@ -15,12 +15,16 @@ public class Cuentas {
     public String pais;
 
 
-    public Cuentas() {
+    public Cuentas(int codigo_usuario, String nombres, String apellidos,String foto) {
+        this.nombres = nombres;
+        this.id = codigo_usuario;
+        this.apellidos = apellidos;
+        this.foto = foto;
 
     }
 
-    public Cuentas(int id, String nombres, String apellidos, String nacimiento, String telefono, String correo, String peso, String foto, int idpais, String pais) {
-        this.id = id;
+    public Cuentas(int codigo_usuario, String nombres, String apellidos, String nacimiento, String telefono, String correo, String peso, String foto, int idpais, String pais) {
+        this.id = codigo_usuario;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.nacimiento = nacimiento;
@@ -32,8 +36,8 @@ public class Cuentas {
         this.pais = pais;
     }
 
-    public Cuentas(int id, String nombres, String apellidos, String nacimiento, String telefono, String correo, String clave, String peso, String foto, int idpais, String pais) {
-        this.id = id;
+    public Cuentas(int codigo_usuario, String nombres, String apellidos, String nacimiento, String telefono, String correo, String clave, String peso, String foto, int idpais, String pais) {
+        this.id = codigo_usuario;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.nacimiento = nacimiento;
