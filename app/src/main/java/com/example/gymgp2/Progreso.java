@@ -76,7 +76,7 @@ casteo();
             LayoutInflater inflater = appCompatActivity.getLayoutInflater();
             View item = inflater.inflate(R.layout.adapterlistaactividades, null);
             //Button btnverRecorrido = item.findViewById(R.id.adapbtnverRecorrido);
-            LinearLayout btnverRecorrido = item.findViewById(R.id.adapbtnverRecorrido);
+
             TextView fecha = item.findViewById(R.id.adaplblfecha);
             TextView kilometros = item.findViewById(R.id.adaplblkm);
             TextView tiempo = item.findViewById(R.id.adaplbltiempo);
@@ -94,15 +94,6 @@ casteo();
                 }
             });
 
-            btnverRecorrido.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
-                    intent.putExtra("codigo_actividad",listaActividades.get(position).getCodigo_actividad());
-                    startActivity(intent);
-                    finish();
-                }
-            });
             return (item);
         }
     }
