@@ -48,43 +48,46 @@
        android:layout_height="match_parent"
 
        android:orientation="vertical">
-    <TextView
-        android:id="@+id/textView34"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="32dp"
-        android:text="Latitud"
-        android:textSize="24sp"
-        android:textColor="#FFFFFF"
-        android:background="#000000"
-        android:textColorHint="#575555"
-        />
+
        <TextView
-           android:id="@+id/textView4"
-           android:textColorHint="#575555"
+           android:id="@+id/textView34"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:layout_marginStart="48dp"
-           android:layout_marginTop="32dp"
-           android:textSize="24sp"
+           android:layout_marginStart="28dp"
+           android:layout_marginTop="22dp"
+           android:layout_marginRight="10dp"
+           android:background="#000000"
+           android:text="Latitud"
            android:textColor="#FFFFFF"
+           android:textColorHint="#575555"
+           android:textSize="24sp" />
+
+       <TextView
+           android:id="@+id/textView4"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="28dp"
+           android:layout_marginTop="12dp"
+           android:layout_marginRight="10dp"
            android:background="#000000"
            android:text="Longitud"
-           />
+           android:textColor="#FFFFFF"
+           android:textColorHint="#575555"
+           android:textSize="24sp" />
+
        <TextView
            android:id="@+id/textView12"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:layout_marginStart="48dp"
-           android:layout_marginTop="32dp"
-           android:text="Tiempo"
-           android:textSize="24sp"
-           android:textColor="#FFFFFF"
+           android:layout_marginStart="28dp"
+           android:layout_marginTop="12dp"
+           android:layout_marginRight="10dp"
            android:background="#000000"
+           android:text="Tiempo"
+           android:textColor="#FFFFFF"
            android:textColorHint="#575555"
 
-           />
+           android:textSize="24sp" />
 
    </LinearLayout>
 
@@ -94,49 +97,49 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
+
         <EditText
             android:id="@+id/txtLat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
-            android:ems="10"
-            android:textSize="24sp"
-            android:textColor="#FFFFFF"
+            android:layout_marginTop="22dp"
             android:background="#000000"
+            android:ems="10"
             android:enabled="false"
             android:inputType="textPersonName"
+            android:textColor="#FFFFFF"
             android:textColorHint="#575555"
-            />
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/txtLon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="32dp"
-            android:textColorHint="#575555"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="12dp"
+            android:background="#000000"
             android:ems="10"
             android:enabled="false"
-            android:textSize="24sp"
-            android:textColor="#FFFFFF"
-            android:background="#000000"
             android:inputType="textPersonName"
-            />
+            android:textColor="#FFFFFF"
+            android:textColorHint="#575555"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/nctiempo"
-            android:textColorHint="#575555"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:background="#000000"
             android:ems="10"
             android:enabled="false"
-            android:textSize="24sp"
-            android:textColor="#FFFFFF"
-            android:background="#000000"
             android:inputType="textPersonName"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#575555"
+            android:textSize="24sp"
 
             />
 

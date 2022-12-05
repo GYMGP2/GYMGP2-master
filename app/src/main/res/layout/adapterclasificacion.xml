@@ -25,13 +25,13 @@
 
             <ImageView
                 android:id="@+id/clasifoto"
-                android:layout_width="70dp"
+                android:layout_width="58dp"
                 android:layout_height="50dp"
                 app:srcCompat="@drawable/img" />
 
             <TextView
                 android:id="@+id/clasinombre"
-                android:layout_width="155dp"
+                android:layout_width="131dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:gravity="center|center_vertical"

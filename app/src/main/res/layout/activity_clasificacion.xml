@@ -28,7 +28,7 @@
 
             <TextView
                 android:id="@+id/textView19"
-                android:layout_width="412dp"
+                android:layout_width="match_parent"
                 android:layout_height="59dp"
                 android:layout_marginTop="13dp"
                 android:background="#FFFFFF"
@@ -51,15 +51,15 @@
 
                     <TextView
                         android:id="@+id/textView20"
-                        android:layout_width="278dp"
+                        android:layout_width="319dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="78dp"
                         android:layout_marginTop="33dp"
                         android:layout_marginEnd="56dp"
                         android:layout_marginBottom="10dp"
-                        android:text="Mejores Calificaciones"
-                        android:textAlignment="center"
-                        android:textColor="#FFFFFF"
+                        android:text="Top Calificaciones"
+                        android:textAlignment="textStart"
+                        android:textColor="#E91E63"
                         android:textSize="24sp"
                         android:textStyle="bold|italic" />
 
@@ -115,7 +115,7 @@
                             android:layout_weight="1"
                             android:background="#FFFFFF"
                             android:backgroundTint="#FFFFFF"
-                            android:text="Km"
+                            android:text="    Km"
                             android:textAlignment="center"
                             android:textColor="#000000"
                             android:textSize="20sp"
